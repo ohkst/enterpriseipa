@@ -95,10 +95,10 @@ git push -u origin main
 
 ```bash
 # IPA 파일을 distribution 폴더로 복사
-cp /path/to/Goldman_Sachs.ipa ./Goldman_Sachs.ipa
+cp /path/to/GoldmanSachs.ipa ./GoldmanSachs.ipa
 
 # Git에 추가 및 푸시
-git add Goldman_Sachs.ipa
+git add GoldmanSachs.ipa
 git commit -m "Add Goldman Sachs IPA file v1.0.0"
 git push
 ```

@@ -20,9 +20,9 @@ Goldman Sachs GS Note는 Goldman Sachs의 리서치 노트를 제공하는 Enter
 /
 ├── index.html           # 다운로드 페이지
 ├── manifest.plist       # 앱 배포 매니페스트
-├── Goldman_Sachs.ipa    # 빌드된 IPA 파일
-├── icon-57.png          # 작은 아이콘 (57x57)
-└── icon-512.png         # 큰 아이콘 (512x512)
+├── GoldmanSachs.ipa     # 빌드된 IPA 파일
+├── icon-57.png          # 작은 아이콘 (57x57) (선택적)
+└── icon-512.png         # 큰 아이콘 (512x512) (선택적)
 ```
 
 ### 3. manifest.plist 수정
@@ -31,7 +31,7 @@ Goldman Sachs GS Note는 Goldman Sachs의 리서치 노트를 제공하는 Enter
 
 ```xml
 <!-- IPA 파일 URL -->
-<string>https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/Goldman_Sachs.ipa</string>
+<string>https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/GoldmanSachs.ipa</string>
 
 <!-- 아이콘 URL -->
 <string>https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/icon-57.png</string>

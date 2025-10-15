@@ -10,11 +10,12 @@
 
 1. ✅ **index.html** - 배포 페이지
 2. ✅ **manifest.plist** - 앱 매니페스트
-3. ✅ **Goldman Sachs.ipa** - IPA 파일 (11MB)
+3. ✅ **GoldmanSachs.ipa** - IPA 파일 (11MB)
 4. ✅ **README.md** - 설명서
 5. ✅ **SETUP_GUIDE.md** - 설정 가이드
 6. ✅ **CREATE_ICONS.md** - 아이콘 생성 가이드
-7. ✅ **.gitignore** - Git 무시 파일
+7. ✅ **test.html** - 배포 상태 테스트 페이지
+8. ✅ **.gitignore** - Git 무시 파일
 
 ## 🌐 다음 단계: GitHub Pages 활성화
 
@@ -76,9 +77,7 @@ Settings → Pages 페이지 상단에 다음 메시지가 표시됩니다:
 
 ### manifest.plist
 ```xml
-<string>https://ohkst.github.io/enterpriseipa/Goldman_Sachs.ipa</string>
-<string>https://ohkst.github.io/enterpriseipa/icon-57.png</string>
-<string>https://ohkst.github.io/enterpriseipa/icon-512.png</string>
+<string>https://ohkst.github.io/enterpriseipa/GoldmanSachs.ipa</string>
 ```
 
 ### index.html
