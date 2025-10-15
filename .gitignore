@@ -1,0 +1,10 @@
+# IPA 파일은 너무 크므로 Git LFS 사용 권장
+# Goldman_Sachs.ipa
+
+# macOS
+.DS_Store
+
+# 임시 파일
+*.tmp
+*.log
+

