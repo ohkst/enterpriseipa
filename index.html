@@ -236,7 +236,7 @@
         <div class="info">
             <span class="warning-icon">ℹ️</span>
             <strong>시스템 요구사항:</strong><br>
-            • iOS 15.6 이상<br>
+            • iPhone, iPad (iOS/iPadOS 15.6 이상)<br>
             • 인터넷 연결 필요<br>
             • MDM 프로필 설치 필요
         </div>
@@ -252,13 +252,6 @@
     <script>
         function handleInstallClick(event) {
             console.log('📱 앱 다운로드 버튼 클릭됨');
-            
-            // iOS 기기가 아닌 경우 경고
-            if (!/(iPhone|iPad|iPod)/i.test(navigator.userAgent)) {
-                event.preventDefault();
-                alert('이 앱은 iOS 기기에서만 설치할 수 있습니다.');
-                return false;
-            }
             
             // 설치 안내 메시지
             setTimeout(function() {
