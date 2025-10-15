@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배포 상태 테스트</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 { color: #333; }
+        .test-item {
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+        }
+        .success { border-left-color: #28a745; background: #d4edda; }
+        .error { border-left-color: #dc3545; background: #f8d7da; }
+        button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Goldman Sachs GS Note - 배포 상태 테스트</h1>
+    
+    <div id="results"></div>
+    
+    <h2>📋 수동 테스트</h2>
+    <button onclick="testManifest()">manifest.plist 테스트</button>
+    <button onclick="testIPA()">IPA 파일 테스트</button>
+    <button onclick="testInstall()">설치 링크 테스트</button>
+    
+    <h2>📱 디바이스 정보</h2>
+    <div id="deviceInfo" class="test-item"></div>
+    
+    <script>
+        const baseURL = 'https://ohkst.github.io/enterpriseipa';
+        const resultsDiv = document.getElementById('results');
+        const deviceInfoDiv = document.getElementById('deviceInfo');
+        
+        // 디바이스 정보 표시
+        deviceInfoDiv.innerHTML = `
+            <strong>User Agent:</strong><br>
+            <code>${navigator.userAgent}</code><br><br>
+            <strong>플랫폼:</strong> ${navigator.platform}<br>
+            <strong>언어:</strong> ${navigator.language}
+        `;
+        
+        // 자동 테스트 실행
+        window.addEventListener('DOMContentLoaded', function() {
+            runAllTests();
+        });
+        
+        async function runAllTests() {
+            addResult('🔄 배포 상태 자동 테스트 시작...', 'test-item');
+            
+            await testFileAccess('manifest.plist', baseURL + '/manifest.plist');
+            await testFileAccess('Goldman_Sachs.ipa', baseURL + '/Goldman_Sachs.ipa');
+            await testFileAccess('index.html', baseURL + '/index.html');
+            
+            addResult('✅ 모든 자동 테스트 완료', 'test-item success');
+        }
+        
+        async function testFileAccess(name, url) {
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                
+                if (response.ok) {
+                    const size = response.headers.get('content-length');
+                    const type = response.headers.get('content-type');
+                    
+                    addResult(
+                        `✅ ${name} 접근 가능<br>` +
+                        `&nbsp;&nbsp;&nbsp;크기: ${formatBytes(size)}<br>` +
+                        `&nbsp;&nbsp;&nbsp;타입: ${type}<br>` +
+                        `&nbsp;&nbsp;&nbsp;URL: ${url}`,
+                        'test-item success'
+                    );
+                } else {
+                    addResult(
+                        `❌ ${name} 접근 실패<br>` +
+                        `&nbsp;&nbsp;&nbsp;상태: ${response.status}<br>` +
+                        `&nbsp;&nbsp;&nbsp;URL: ${url}`,
+                        'test-item error'
+                    );
+                }
+            } catch (error) {
+                addResult(
+                    `❌ ${name} 테스트 오류<br>` +
+                    `&nbsp;&nbsp;&nbsp;오류: ${error.message}<br>` +
+                    `&nbsp;&nbsp;&nbsp;URL: ${url}`,
+                    'test-item error'
+                );
+            }
+        }
+        
+        function testManifest() {
+            addResult('🔍 manifest.plist 상세 테스트 중...', 'test-item');
+            
+            fetch(baseURL + '/manifest.plist')
+                .then(response => response.text())
+                .then(text => {
+                    addResult(
+                        `✅ manifest.plist 내용:<br><pre>${escapeHtml(text)}</pre>`,
+                        'test-item success'
+                    );
+                })
+                .catch(error => {
+                    addResult(
+                        `❌ manifest.plist 로드 실패: ${error.message}`,
+                        'test-item error'
+                    );
+                });
+        }
+        
+        function testIPA() {
+            addResult('🔍 IPA 파일 테스트 중...', 'test-item');
+            
+            fetch(baseURL + '/Goldman_Sachs.ipa', { method: 'HEAD' })
+                .then(response => {
+                    const size = response.headers.get('content-length');
+                    const type = response.headers.get('content-type');
+                    
+                    addResult(
+                        `✅ IPA 파일 접근 가능<br>` +
+                        `&nbsp;&nbsp;&nbsp;크기: ${formatBytes(size)}<br>` +
+                        `&nbsp;&nbsp;&nbsp;타입: ${type}<br>` +
+                        `&nbsp;&nbsp;&nbsp;상태: ${response.status}`,
+                        'test-item success'
+                    );
+                })
+                .catch(error => {
+                    addResult(
+                        `❌ IPA 파일 접근 실패: ${error.message}`,
+                        'test-item error'
+                    );
+                });
+        }
+        
+        function testInstall() {
+            const installURL = `itms-services://?action=download-manifest&url=${baseURL}/manifest.plist`;
+            
+            addResult(
+                `📱 설치 링크:<br>` +
+                `<code>${installURL}</code><br><br>` +
+                `⚠️ iOS 기기에서만 작동합니다.<br>` +
+                `iOS Safari에서 이 페이지를 열고 버튼을 클릭하세요.`,
+                'test-item'
+            );
+            
+            if (/(iPhone|iPad|iPod)/i.test(navigator.userAgent)) {
+                window.location.href = installURL;
+            } else {
+                alert('이 기능은 iOS 기기에서만 사용할 수 있습니다.');
+            }
+        }
+        
+        function addResult(html, className) {
+            const div = document.createElement('div');
+            div.className = className;
+            div.innerHTML = html;
+            resultsDiv.appendChild(div);
+        }
+        
+        function formatBytes(bytes) {
+            if (!bytes) return '알 수 없음';
+            const kb = bytes / 1024;
+            const mb = kb / 1024;
+            
+            if (mb >= 1) {
+                return mb.toFixed(2) + ' MB';
+            } else if (kb >= 1) {
+                return kb.toFixed(2) + ' KB';
+            } else {
+                return bytes + ' bytes';
+            }
+        }
+        
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+    </script>
+</body>
+</html>
+
